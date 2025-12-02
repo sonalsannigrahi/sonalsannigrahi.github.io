@@ -1,299 +1,684 @@
 <!DOCTYPE html>
-<!--
- - File              : index.html
- - Author            : Marcos Horro <marcos.horro@udc.gal>
- - Last Modified Date: Mar 18 Set 2018 15:46:32 CEST
--->
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Sonal's Personal Page">
     <meta name="author" content="Sonal Sannigrahi">
-
     <title>Sonal Sannigrahi</title>
-     <link rel="icon" href="img/icon.jpg">
+    <link rel="icon" href="img/icon.jpg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --text-color: #333;
+        }
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-color);
+            padding-top: 70px;
+        }
 
-    <!-- Custom styles for this template -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  </head>
+        .bg-udc {
+            background-color: var(--primary-color) !important;
+        }
 
-  <body>
-    <!-- header -->
-    <header>
-      <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md fixed-top bg-dark bg-udc">
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9);
+            transition: color 0.3s ease;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            position: sticky;
+            top: 85px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons li a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .social-icons li a:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Content Sections */
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .display-5 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Scrollable News Section */
+        .news-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .news-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .news-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .news-container::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        .news-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--light-bg);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            background: #e8f4f8;
+            transform: translateX(5px);
+        }
+
+        /* Publications Section */
+        .publication {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .publication-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .publication-authors {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .publication-venue {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .pub-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pub-btn {
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-pdf {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-pdf:hover {
+            background: #c0392b;
+            color: white;
+        }
+
+        .btn-abstract {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-abstract:hover {
+            background: #2980b9;
+            color: white;
+        }
+
+        .btn-video {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-video:hover {
+            background: #229954;
+            color: white;
+        }
+
+        /* Media Section */
+        .media-item {
+            margin-bottom: 30px;
+        }
+
+        .media-item h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Badges */
+        .badge-secondary {
+            background-color: var(--secondary-color);
+            padding: 5px 10px;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .profile-section {
+                position: relative;
+                top: 0;
+                margin-bottom: 20px;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            section {
+                padding: 20px 15px;
+            }
+
+            .display-5 {
+                font-size: 1.5rem;
+            }
+
+            .news-container {
+                max-height: 400px;
+            }
+
+            .video-container {
+                margin-bottom: 20px;
+            }
+
+            .pub-buttons {
+                flex-direction: column;
+            }
+
+            .pub-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .social-icons li a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Links */
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-udc">
         <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i></button>
-    		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About<span class="sr-only">(current)</span></a>
-                <li class="nav-item">
-              </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#news">News</a>
-              </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#work">Publications</a>
-              </li>
-             <li class="nav-item">
-                <a class="nav-link" href="#media">Media and Tech Outreach</a>
-              </li>
-    
-            </ul>
-          </div>
+            <a class="navbar-brand d-md-none" href="#">Sonal Sannigrahi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#media">Media & Outreach</a></li>
+                </ul>
+            </div>
         </div>
-    	</nav>
-    </header>
+    </nav>
 
-    <!-- Begin page content -->
-    <main role="main" class="container">
-    <div class="row">
-      <div class="col-4 mx-auto d-block">
-        <div class="row mt-5 mx-auto d-block text-center">
-          <img src="img/profile.jpg" width="250" alt="Profile picture">
-          <h4> Hello World! I'm Sonal </h4>
+    <!-- Main Content -->
+    <main class="container">
+        <div class="row">
+            <!-- Sidebar Profile -->
+            <div class="col-lg-4 col-md-12">
+                <div class="profile-section">
+                    <div class="text-center">
+                        <img src="img/profile.jpg" class="profile-img" alt="Profile picture">
+                        <h4>Hello World! I'm Sonal</h4>
+                        <p class="lead"><i class="far fa-envelope"></i> sonal.sannigrahi@tecnico.ulisboa.pt</p>
+                    </div>
+                    <hr>
+                    <ul class="social-icons">
+                        <li><a href="https://www.linkedin.com/in/sonal-08012001/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=Z2TYorQAAAAJ"><i class="fas fa-graduation-cap"></i> Scholar</a></li>
+                        <li><a href="https://github.com/sonalsannigrahi/"><i class="fab fa-github"></i> Github</a></li>
+                    </ul>
+                    <hr>
+                    <div class="text-center">
+                        <a href="img/Sonal Sannigrahi Research Resume.pdf" class="btn btn-primary btn-sm">
+                            <i class="far fa-file-pdf"></i> Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-8 col-md-12">
+                <!-- About Section -->
+                <section id="about">
+                    <h3 class="display-5">About</h3>
+                    <hr>
+                    <p>
+                        I am a third year Ph.D student at the <a href="https://sardine-lab.github.io">Sardine Lab</a> 
+                        advised by Dr. Andre F.T. Martins and Dr. Giuseppe Attanassio. I completed my master's at 
+                        Saarland University studying <a href="https://www.uni-saarland.de/en/department/lst/research.html">Language Science and Technology</a> 
+                        where I worked at the <a href="https://www.dfki.de/en/web/research/research-departments/multilinguality-and-language-technology">Multilingual Technologies Lab, DFKI</a> 
+                        under the supervision of Dr. Cristina Espana-Bonet. Prior to this, I received my bachelor's as a 
+                        Mathematics and Computer Science double major at <a href="https://www.polytechnique.edu/en">École Polytechnique</a>.
+                    </p>
+                    <p>
+                        My current research interests largely revolve around learning better representations of languages 
+                        in a multilingual and multimodal setup. My work has revolved around adding speech and visual modalities 
+                        to pre-existing text-only LLMs in order to move towards the most natural way of communicating, which is 
+                        through all modes. In the future, I want to create models that are robust to multiple languages and 
+                        modalities which allows it to work in collaboration rather than interference. Please reach out for any 
+                        interesting collaborations!
+                    </p>
+                </section>
+
+                <!-- News Section -->
+                <section id="news">
+                    <h3 class="display-5">News</h3>
+                    <hr>
+                    <div class="news-container">
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Aug. 20, 2025</span>
+                            <p class="mb-0 mt-2">
+                                <a href="https://arxiv.org/pdf/2503.10620">SPIRE</a> has been accepted to EMNLP 2025 (Findings)! 
+                                See you in China! We also release two new works on multimodality: 
+                                <a href="https://guilhermeviveiros.github.io/TowerVision.io/">TowerVision</a> and the 
+                                <a href="https://arxiv.org/pdf/2506.06275">MF2 Benchmark</a>!
+                            </p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Feb. 1, 2025</span>
+                            <p class="mb-0 mt-2">Back to sunny Lisbon, and we now have a patent accepted from my work at Amazon!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Oct. 1, 2024</span>
+                            <p class="mb-0 mt-2">Started my internship at Amazon Alexa on semantically aware speech representations.</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Apr. 10, 2024</span>
+                            <p class="mb-0 mt-2">First author paper accepted at SIGIR'24 on synthetic data generation via LLMs for virtual assistants!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Oct. 1, 2023</span>
+                            <p class="mb-0 mt-2">Completed my master's, my internship at Apple, and moved to Lisbon, PT!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Apr. 10, 2023</span>
+                            <p class="mb-0 mt-2">First author paper at EAMT, Finland with Inria Paris!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Jan. 30, 2023</span>
+                            <p class="mb-0 mt-2">Spending the summer at Apple AI/ML Research in Germany!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Jan. 22, 2023</span>
+                            <p class="mb-0 mt-2">First author paper in EACL about document representations with the MLT team at DFKI! See you in Croatia!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Jul. 28, 2022</span>
+                            <p class="mb-0 mt-2">Awarded the <a href="https://www.sighpc.org/for-your-career/fellowships/2022-fellowship-winners">ACM SIGHPC Computational Science Fellowship</a> for 2022!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">May. 31, 2022</span>
+                            <p class="mb-0 mt-2">Awarded the <a href="https://www.palantir.com/careers/students/scholarship/wit-europe/">Palantir Women in Technology Scholarship</a>!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">May. 22-27, 2022</span>
+                            <p class="mb-0 mt-2">Attended my first conference, ACL! Presented my work at Repl4NLP :)</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Dec. 29, 2021</span>
+                            <p class="mb-0 mt-2">Excited to be joining Bloomberg LP in the spring for their technology insights week!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Oct. 15, 2021</span>
+                            <p class="mb-0 mt-2">Started my master's degree at Saarland Uni</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Sep. 20, 2021</span>
+                            <p class="mb-0 mt-2">I am going to be giving a talk at PyCon ZA'21 on Self-Supervised Action Classification!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Jul. 16, 2021</span>
+                            <p class="mb-0 mt-2">I have successfully completed my bachelor's degree with honours!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">May. 21, 2021</span>
+                            <p class="mb-0 mt-2">Awarded a scholarship to attend the first <a href="https://vghcemea.anitab.org">vGHC EMEA conference</a>!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Apr. 21, 2021</span>
+                            <p class="mb-0 mt-2">Successfully defended my thesis on cross lingual word embeddings for low resource machine translation receiving the highest grade!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Oct. 20, 2020</span>
+                            <p class="mb-0 mt-2">Held my first event at <a href="https://codeweek.eu/">Code Week EU</a> by Code.org!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Sep. 7, 2020</span>
+                            <p class="mb-0 mt-2">Completed the Google Get Ahead programme, an invite only development programme for students.</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">Jul. 20, 2020</span>
+                            <p class="mb-0 mt-2">Part of the Programme Committee at <a href="https://sites.google.com/view/nlpbt-2020/organization">NLP Beyond Text Workshop</a> at EMNLP'20!</p>
+                        </div>
+
+                        <div class="news-item">
+                            <span class="badge badge-secondary">May. 4, 2020</span>
+                            <p class="mb-0 mt-2">Won the Google WomenTechmakers Computer Science Scholarship in EMEA!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Publications Section -->
+                <section id="publications">
+                    <h3 class="display-5">Publications</h3>
+                    <hr>
+
+                    <div class="publication">
+                        <div class="publication-title">From Tower to Spire: Adding the Speech Modality to a Translation-specialist LLM</div>
+                        <div class="publication-authors">Ambilduke, Kshitij*, Peters, Ben*, <strong>Sannigrahi, Sonal*</strong> et. al.</div>
+                        <div class="publication-venue">30th Conference of the Empirical Methods for Natural Language Processing, 2025</div>
+                        <div class="pub-buttons">
+                            <a href="https://arxiv.org/pdf/2503.10620" class="pub-btn btn-pdf" target="_blank">
+                                <i class="far fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">Synthetic query generation using large language models for virtual assistants</div>
+                        <div class="publication-authors"><strong>Sannigrahi, Sonal*</strong>, Thiago Fraga-Silva, Youssef Oualil, Christophe Van Gysel*</div>
+                        <div class="publication-venue">47th International ACM SIGIR Conference, 2024</div>
+                        <div class="pub-buttons">
+                            <a href="https://dl.acm.org/doi/pdf/10.1145/3626772.3661355" class="pub-btn btn-pdf" target="_blank">
+                                <i class="far fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">Investigating Lexical Sharing in Multilingual Machine Translation of Indian Languages</div>
+                        <div class="publication-authors"><strong>Sannigrahi, Sonal</strong> and Bawden, Rachel</div>
+                        <div class="publication-venue">24th Conference of the European Association for Machine Translation, 2023</div>
+                        <div class="pub-buttons">
+                            <a href="https://arxiv.org/pdf/2305.03207" class="pub-btn btn-pdf" target="_blank">
+                                <i class="far fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">Are the Best Multilingual Document Embeddings simply Based on Sentence Embeddings?</div>
+                        <div class="publication-authors"><strong>Sannigrahi, Sonal</strong>, van Genabith, Josef and Espana-Bonet, Cristina</div>
+                        <div class="publication-venue">17th Conference of the European Chapter of the Association for Computational Linguistics, 2023</div>
+                        <div class="pub-buttons">
+                            <a href="https://arxiv.org/pdf/2304.14796" class="pub-btn btn-pdf" target="_blank">
+                                <i class="far fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">Isomorphic Cross-Lingual Word Embeddings for Low-Resource Languages</div>
+                        <div class="publication-authors"><strong>Sannigrahi, Sonal</strong> and Read, Jesse</div>
+                        <div class="publication-venue">7th Workshop on Representation Learning for NLP at ACL, 2022</div>
+                        <div class="pub-buttons">
+                            <a href="https://arxiv.org/pdf/2203.14632" class="pub-btn btn-pdf" target="_blank">
+                                <i class="far fa-file-pdf"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Media and Outreach Section -->
+                <section id="media">
+                    <h3 class="display-5">Media and Outreach Work</h3>
+                    <hr>
+                    <p>In my time at university, my work has been recognised in a few different areas. Have a look!</p>
+
+                    <h4><i class="fas fa-microphone"></i> Interviews</h4>
+                    <div class="media-item">
+                        <h5>Women in Science Interview (2020)</h5>
+                        <p>
+                            I talk about what I think about the position of women in STEM fields, why I think representation matters, 
+                            and what I'm doing to break down language barriers for people around the world with hopes of making tech 
+                            an inclusive field!
+                        </p>
+                        <a href="https://programmes.polytechnique.edu/en/post/women-in-science-meet-sonal-sannigrahi-bachelor-student" 
+                           class="btn btn-sm btn-outline-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Read Interview
+                        </a>
+                    </div>
+
+                    <h4 class="mt-4"><i class="fas fa-video"></i> Talks</h4>
+                    
+                    <div class="media-item">
+                        <h5>PyCon ZA 2021: Moving In-Sync</h5>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/tWqnd3J_dqw" 
+                                    title="PyCon ZA 2021" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="media-item">
+                        <h5>PyCon FR 2019: APIs and Language Processing with Python for Twitter</h5>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/CLu6A09u4rk" 
+                                    title="PyCon FR 2019" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4"><i class="fas fa-hands-helping"></i> Tech Outreach</h4>
+                    <p>
+                        My love for languages and inclusivity goes far beyond the realms of research and academic work! 
+                        In my free time, I volunteer at organizations whose mission I believe in!
+                    </p>
+
+                    <div class="media-item">
+                        <h5><a href="https://code.org/" target="_blank">Code.org</a> (2020)</h5>
+                        <p>
+                            Code.org allows tech enthusiasts from around the world to register as a volunteer and teach basic 
+                            programming skills to kids everywhere. I conducted an event as part of EU Code Week 2020 where I 
+                            spoke about different scholarship opportunities available for women in STEM fields within the EMEA region.
+                        </p>
+                    </div>
+
+                    <div class="media-item">
+                        <h5><a href="https://www.raspberrypi.org/translate/" target="_blank">RaspberryPi Translation Volunteer</a> (2019)</h5>
+                        <p>
+                            I joined RaspberryPi Translation in the summer of 2019 as a translator for the English-Hindi team. 
+                            I translated and reviewed numerous projects to impact more than 250 code clubs in India. I also 
+                            successfully organized a translation hackathon where we translated 15 projects in 7 different languages! 
+                            This work was highly impactful in rural communities throughout India.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer>
+                    <p>
+                        <a href="https://github.com/markoshorro/academic-template">Website built from Marcos Horro's template</a>
+                    </p>
+                    <p style="color:#808080"><em>Last updated Oct. 30 2025</em></p>
+                </footer>
+            </div>
         </div>
-        <hr>
-        <div class="row mx-auto d-block">
-        <p class="lead text-center "><i class="far fa-envelope"></i>sonal.sannigrahi@tecnico.ulisboa.pt</p>
-        <ul class="social-icons text-center">
-           
-          	<li><a class="linkedin" href="https://www.linkedin.com/in/sonal-08012001/" title="Linkedin">LinkedIn</a></li>
-          <li><a class="twitter" href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=Z2TYorQAAAAJ" title="Google Scholar">Scholar</a></li>
-          	<li><a class="github" href="https://github.com/sonalsannigrahi/" title="Github">Github</a></li>
-          
-         
-        </ul>
-        <hr>
-        <p class="text-center font-weight-light">
-      	<i class="far fa-user-circle"></i> <a href="img/Sonal Sannigrahi Research Resume.pdf" alt="CV">Curriculum Vitae</a><br>
-        </p>
-        <hr>
-      </div>
-      </div>
-      <div class="col-8">
-        <section id="about" class="mt-5">
-          <h3 class="display-5">About</h3><hr>
-          <p class="font-weight-light"> 
-         I am a third year Ph.D student at the <a href="https://sardine-lab.github.io"> Sardine Lab </a> advised by Dr. Andre F.T. Martins and Dr. Giuseppe Attanassio. I completed my master's at Saarland University studying <a href="https://www.uni-saarland.de/en/department/lst/research.html"> Language Science and Technology </a> where I worked at the <a href="https://www.dfki.de/en/web/research/research-departments/multilinguality-and-language-technology">Multilingual Technologies Lab, DFKI </a> under the supervision of Dr. Cristina Espana-Bonet. Prior to this, I received my bachelor's as a Mathematics and Computer Science double major at <a href="https://www.polytechnique.edu/en"> École Polytechnique</a>. 
-           <br><br>
-           My current research interests largely revolve around learning better representations of languages in a multilingual and multimodal setup. My work has revolved around adding speech and visual modalities to pre-existing text-only LLMs in order to move towards the most natural way of communiting, which is through all modes. In the future, I want to create models that are robust to mutliple languages and modalities which allows it to work in collaboration rather than interference. Please reach out for any interesting collaborations! 
-           <br><br>
-         </p>
-        </section>
-     
-        <section id="news" class="mt-5">
-          <h3 class="display-5">News</h3><hr>
-          <p class="font-weight-light">
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Aug. 20, 2025</span> <a href="https://arxiv.org/pdf/2503.10620"> SPIRE</a> has been accepted to EMNLP 2025 (Findings)! See you in China! We also release two new works on multimodality: <a href="https://guilhermeviveiros.github.io/TowerVision.io/">TowerVision</a> and the <a href="https://arxiv.org/pdf/2506.06275?">MF2 Benchmark</a>!
-          </li> 
-         </ul> 
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Feb 1., 2025</span> Back to sunny Lisbon, and we now have a patent accepted from my work at Amazon!
-          </li> 
-         </ul> 
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Oct. 1, 2024</span> Started my internship at Amazon Alexa on semantically aware speech representations.
-          </li> 
-         </ul> 
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Apr. 10, 2024</span> First author paper accepted at SIGIR'24 on synthetic data generation via LLMs for virtual assistants!
-          </li> 
-         </ul>  
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Oct. 1, 2023</span> Completed my master's, my internship at Apple, and moved to Lisbon, PT!
-          </li> 
-         </ul>  
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Apr. 10, 2023</span> First author paper at EAMT, Finland with Inria Paris!
-          </li> 
-         </ul>  
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Jan. 30, 2023</span> Spending the summer at Apple AI/ML Research in Germany!
-          </li> 
-         </ul> 
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Jan. 22, 2023</span> First author paper in EACL about document representations with the MLT team at DFKI! See you in Croatia!
-          </li> 
-         </ul> 
-         </ul>
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Jul. 28, 2022</span> Awarded the <a href="https://www.sighpc.org/for-your-career/fellowships/2022-fellowship-winners">ACM SIGHPC Computational Science Fellowship</a> for 2022! Immensely thankful for all the support! 
-          </li> 
-         </ul>            
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">May. 31, 2022</span> Awarded the <a href="https://www.palantir.com/careers/students/scholarship/wit-europe/">Palantir Women in Technology Scholarship</a>! So grateful <3  
-          </li> 
-         </ul>
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">May. 22-27, 2022</span> Attended my first conference, ACL! Yay! Presented my work at Repl4NLP :)  
-          </li> 
-         </ul> 
-          <ul class="clist">
-            <li> <span class="badge badge-secondary">Dec. 29, 2021</span> Excited to be joining Bloomberg LP in the spring for their technology insights week! 
-          </li> 
-         </ul> 
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">Oct. 15, 2021</span> Started my master's degree at Saarland Uni
-          </li> 
-         </ul>
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">Sep. 20, 2021</span> I am going to be giving a talk at PyCon ZA'21 on Self-Supervised Action Classification!
-          </li> 
-         </ul>
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">Jul. 16, 2021</span> I have sucessfully completed my bachelor's degree with honours!
-          </li> 
-         </ul>
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">May. 21, 2021</span> I have been awarded a scholarship to attend the first <a href="https://vghcemea.anitab.org">vGHC EMEA conference</a> bringing together women technologists from all over the world!
-          </li> 
-         </ul>
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Apr. 21, 2021</span> I successfully defended my thesis on cross lingual word embeddings for low resource machine translation receiving the highest grade!
-          </li> 
-         </ul>
-            <ul class="clist">
-            <li> <span class="badge badge-secondary">Oct. 20, 2020</span> I held my first event at <a href="https://codeweek.eu/">Code Week EU</a> by Code.org!
-          </li> 
-         </ul>
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">Sep. 7, 2020</span> I completed the Google Get Ahead programme, which is an invite only development programme for students. 
-          </li> 
-         </ul>
-            <ul class="clist">
-            <li> <span class="badge badge-secondary">Jul. 20, 2020</span> I was part of the Programme Committee at <a href="https://sites.google.com/view/nlpbt-2020/organization">NLP Beyond Text Workshop</a> at EMNLP'20!
-          </li> 
-         </ul>
-           <ul class="clist">
-            <li> <span class="badge badge-secondary">May. 4, 2020</span> I won the Google WomenTechmakers Computer Science Scholarship in EMEA!
-          </li> 
-         </ul>
-         
-        </section>
-       <section id="work" class="mt-5">
-          <h3 class="display-5">Publications</h3><hr>
-          <p class="font-weight-light"> 
-<pre id="bibtex">
-<a href="https://arxiv.org/pdf/2503.10620">From Tower to Spire: Adding the Speech Modality to a Translation-specialist LLM</a>
-Ambilduke, Kshitij*, Peters, Ben*, <b> Sannnigrahi, Sonal* </b> et. al.
-<i>30th Conference of the Empirical Methods for Natural Language Processing, 2025 </i>
-<br>
-<a href="https://dl.acm.org/doi/pdf/10.1145/3626772.3661355">Synthetic query generation using large language models for virtual assistants</a>
-<b> Sannnigrahi, Sonal* </b>, Thiago Fraga-Silva, Youssef Oualil, Christophe Van Gysel*
-<i>47th International ACM SIGIR Conference </i>
-<br>
-<a href="https://arxiv.org/pdf/2305.03207">Investigating Lexical Sharing in Multilingual Machine Translation of Indian Languages</a>
-<b>Sannigrahi, Sonal</b> and Bawden, Rachel
-<i>24th Conference of the European Association for Machine Translation, 2023 </i>
-<br>
-<a href="https://arxiv.org/pdf/2304.14796">Are the Best Multilingual Document Embeddings simply Based on Sentence Embeddings?</a>
-<b>Sannigrahi, Sonal</b> and van Genabith, Josef and Espana-Bonet, Cristina
-<i>17th Conference of the European Chapter of the Association for Computational Linguistics </i>
-<br>
-<a href="https://arxiv.org/pdf/2203.14632">Isomorphic Cross-Lingual Word Embeddings for Low-Resource Languages</a>
-<b>Sannigrahi, Sonal</b> and Read, Jesse
-<i>7th Workshop on Representation Learning for NLP at the 60th Annual Meeting of the Association for Computational Linguistics, 2022</i>
-        <section id="media" class="mt-5">
-          <h3 class="display-5">Media and Outreach Work</h3>
-          <hr>
-          <p class="font-weight-light"> 
-          	In my time at university, my work has been recognised in a few different areas. Have a look!
-           <br><br>
-           
-         </p>
-          <h4>Interviews</h4>
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">2020</span>
-          <a href="https://programmes.polytechnique.edu/en/post/women-in-science-meet-sonal-sannigrahi-bachelor-student"> Women in Science Interview</a>  
-          </li> 
-         I talk about what I think about the position of women in STEM fields, why I think representation matter, and what I'm doing to break down language barriers for people around the world with hopes of making tech an inclusive field!
-         </ul>
-
-         <h4> Talks </h4>
-           </li>
-          </ul>
-         <ul class="clist">
-          <li> <span class="badge badge-secondary">2021</span> PyCon ZA: Moving In-Sync <br><br>
-           <iframe width="370" height="210" src="https://www.youtube.com/embed/tWqnd3J_dqw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>           </li>
-          <li> <span class="badge badge-secondary">2019</span> PyCon FR: APIs and Language Processing with Python for Twitter <br><br>
-           <iframe width="370" height="210" src="https://www.youtube.com/embed/CLu6A09u4rk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           </li>
-          </ul>
-          <h4>Tech Outreach</h4>
-          My love for languages and inclusivity goes far beyond the realms of research and academic work! In my free time, I volunteer at a bunch of places whose mission I believe in! I am a proud contributor of all of these wonderful organisations :)
-         <ul class="clist">
-            <li> <span class="badge badge-secondary">2020</span>
-          <a href="https://code.org/"> Code.org </a> 
-          </li> 
-          Code.org allows tech enthusiats from around the world to register as a volunteer and teach basic programming skills to kids everywhere. One event I conducted was part of EU Code Week 2020 where I spoke about different scholarship opportunities available for women in STEM fields within the EMEA region. 
-            <li> <span class="badge badge-secondary">2019</span>
-          <a href="https://www.raspberrypi.org/translate/"> RaspberryPi Translation Volunteer </a> 
-          </li> 
-          I joined RaspberryPi Translation in the summer of 2019 as a translator for the English-Hindi team. Here, I translated and reviewed numerous projects to impact more than 250 code clubs in India. I also succesfully organised a translation hackathon where we tranlslated 15 projects in 7 different languages! This work was highly impactful in rural communities throughout India. I would strongly recommend joining the translation team as they are super welcoming to new volunteers and the work is extremely rewarding! 
-         </ul>
-
-        
-         
-        </section>
-       
-
-             
-         
-        </section>
-       <br><br><br>
-       <p class="font-weight-light">          
-       <a href="https://github.com/markoshorro/academic-template"> Website built from Marcos Horro's template </a>
-        <br>
-        <i> <p style="color:#808080">Last updated Oct. 30 2025</p> </i>
-
-</p>
-      </div>
-    </div>
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Close mobile menu on link click
+        $('.navbar-nav>li>a').on('click', function(){
+            $('.navbar-collapse').collapse('hide');
+        });
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bibtex.js"></script>
-<script type="text/javascript">
- var init = function() {
-   bibtexify("#bibtex", "pubTable", {});
- };
- if (window.addEventListener) {
-   window.addEventListener('load', init, false);
- } else if (window.attachEvent) {
-   window.attachEvent('onload', init);
- }
-</script>
-<script>
-jQuery("#pubTable").on("click", "a", function(e) {
-  var $n = jQuery(this),
-      text = $n.text().toUpperCase();
-  if (text === "X") { return; }
-  try {
-    _gaq.push(['_trackEvent', "PublicationAction", text]);
-} catch(err){ }
-  if ($n.attr("href") !== "#") {
-    setTimeout(function() {
-      document.location.href = $n.attr("href");
-    }, 100);
-    return false;
-  }
-});
-</script>
-  </body>
+        // Smooth scroll offset for fixed navbar
+        $('a[href*="#"]').on('click', function(e) {
+            if (this.hash !== '') {
+                e.preventDefault();
+                const hash = this.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top - 80
+                }, 800);
+            }
+        });
+    </script>
+</body>
 </html>
